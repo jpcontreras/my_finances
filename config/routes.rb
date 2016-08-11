@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-  get 'social_session/index'
 
+  #devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'social_session#index'
-
-  match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-  match 'auth/failure', to: redirect('/'), via: [:get, :post]
-  match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+  #root 'welcome#index'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
