@@ -11,12 +11,21 @@
 /log/*
 !/log/.keep
 /tmp
+tmp/**/*
+tmp/*
+doc/api
+doc/app
+/.idea
+.idea
+.idea/
+/.idea/*
+.idea/*
+*.swp
+.DS_Store
 
 *.rbc
 capybara-*.html
 .rspec
-/log
-/tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
@@ -35,7 +44,7 @@ config/secrets.yml
 .env
 
 ## Environment normalization:
-/.bundle
+#/.bundle
 /vendor/bundle
 
 # these should all be checked in to normalize the environment:
