@@ -1,26 +1,27 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div ng-app="MainCtrl" class="middle-box text-center loginscreen  animated fadeInDown">
+  <div>
+    <div>
+      <h1 class="logo-name">F+</h1>
     </div>
-  <% end -%>
+    <h3>Bienvenido a Finazas Plus</h3>
+    <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+    </p>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+            <%= link_to omniauth_authorize_path(resource_name, provider), :class=>"btn btn-success" do %>
+                <% if OmniAuth::Utils.camelize(provider) == "Facebook" %>
+                    <i class="fa fa-facebook"></i> |
+                <% end %>
+                <% if OmniAuth::Utils.camelize(provider) == "Twitter" %>
+                    <i class="fa fa-twitter"></i> |
+                <% end %>
+                <%= "Sign in with #{OmniAuth::Utils.camelize(provider)}" %>
+            <% end %>
+            <br /><br />
+        <% end -%>
+    <% end -%>
+
+    <p class="m-t"> <small>AppCorp &copy; 2016</small> </p>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
